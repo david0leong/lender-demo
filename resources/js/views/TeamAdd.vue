@@ -1,25 +1,44 @@
 <template>
-  <div>
-    Add Team
-  </div>
+  <b-card title="Add Team">
+    <b-alert v-if="error" show variant="danger" dismissible>
+      {{ error }}
+    </b-alert>
+
+    <team-form @submit="onSubmit" @cancel="onCancel"></team-form>
+  </b-card>
 </template>
 
 <script>
-import { fetchTeam } from '../utils/api'
+import { createTeam } from '../utils/api'
+import TeamForm from '../components/TeamForm'
 
 export default {
   name: 'TeamAdd',
 
+  components: {
+    TeamForm,
+  },
+
   data() {
     return {
-      team: null,
+      error: '',
     }
   },
 
-  created() {
-    // this.loadData()
-  },
+  methods: {
+    async onSubmit(newTeam) {
+      try {
+        const { data } = await createTeam(newTeam)
 
-  methods: {},
+        this.$router.push({ name: 'TeamDetails', params: { id: data.data.id } })
+      } catch (error) {
+        this.error = error.response.data.message || error.message
+      }
+    },
+
+    onCancel() {
+      this.$router.push({ name: 'Teams' })
+    },
+  },
 }
 </script>

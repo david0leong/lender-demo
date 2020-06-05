@@ -10,6 +10,7 @@ import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 import router from './router'
+import './utils/vee-validate'
 import App from './views/App'
 
 // Install BootstrapVue
@@ -19,6 +20,6 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 new Vue({
-    router,
-    render: h => h(App),
+  router,
+  render: h => h(App),
 }).$mount('#spa')

@@ -26,6 +26,7 @@
     "dependencies": {
         "bootstrap-vue": "^2.15.0",
         "date-fns": "^2.14.0",
+        "vee-validate": "^3.3.2",
         "vue-router": "^3.3.2"
     }
 }

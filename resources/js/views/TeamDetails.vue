@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div v-if="error">
-      <b-alert show variant="danger" dismissible>
-        {{ error }}
-      </b-alert>
-    </div>
+    <b-alert v-if="error" show variant="danger" dismissible>
+      {{ error }}
+    </b-alert>
 
     <div v-if="team">
       <div class="d-flex justify-content-between align-items-center">
