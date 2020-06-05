@@ -4,8 +4,6 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
 const token = document.head.querySelector('meta[name="csrf-token"]')
 
-console.log('token', token.content)
-
 if (token) {
   axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
 } else {
