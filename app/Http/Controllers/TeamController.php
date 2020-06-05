@@ -15,7 +15,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return TeamResource::collection(Team::all());
+        return TeamResource::collection(Team::with(['players'])->get());
     }
 
     /**
@@ -41,6 +41,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
+        $team->load('players');
         return new TeamResource($team);
     }
 

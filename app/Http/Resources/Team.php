@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Player as PlayerResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Team extends JsonResource
@@ -14,6 +15,11 @@ class Team extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return array_merge(
+            parent::toArray($request),
+            [
+                'players' => PlayerResource::collection($this->whenLoaded('players')),
+            ]
+        );
     }
 }
