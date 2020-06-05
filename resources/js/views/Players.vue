@@ -1,25 +1,21 @@
 <template>
-  <div>
-    <b-table :fields="fields" :items="players"></b-table>
-  </div>
+  <players-table :players="players"></players-table>
 </template>
 
 <script>
 import { fetchPlayers } from '../utils/api'
-import { formatDate } from '../utils/formatters'
+
+import PlayersTable from '../components/PlayersTable'
 
 export default {
   name: 'Players',
+  components: {
+    PlayersTable,
+  },
 
   data() {
     return {
       players: [],
-      fields: [
-        { key: 'id', label: 'ID' },
-        { key: 'first_name', label: 'First Name' },
-        { key: 'last_name', label: 'Last Name' },
-        { key: 'created_at', label: 'Created At' },
-      ],
     }
   },
 
@@ -31,10 +27,7 @@ export default {
     async loadData() {
       const { data } = await fetchPlayers()
 
-      this.players = data.data.map(player => ({
-        ...player,
-        created_at: formatDate(player.created_at),
-      }))
+      this.players = data.data
     },
   },
 }

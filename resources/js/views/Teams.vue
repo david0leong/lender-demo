@@ -1,7 +1,11 @@
 <template>
-  <div>
-    <b-table :fields="fields" :items="teams"></b-table>
-  </div>
+  <b-table :fields="fields" :items="teams" hover>
+    <template v-slot:cell(action)="team">
+      <b-button :to="{ name: 'TeamDetails', params: { id: team.id } }">
+        View
+      </b-button>
+    </template>
+  </b-table>
 </template>
 
 <script>
@@ -18,6 +22,7 @@ export default {
         { key: 'id', label: 'ID' },
         { key: 'name', label: 'Name' },
         { key: 'created_at', label: 'Created At' },
+        'action',
       ],
     }
   },

@@ -9,4 +9,6 @@ const axiosInstance = axios.create({
 })
 
 export const fetchTeams = () => axiosInstance.get('/teams')
+export const fetchTeam = id => axiosInstance.get(`/teams/${id}`)
+
 export const fetchPlayers = () => axiosInstance.get('/players')

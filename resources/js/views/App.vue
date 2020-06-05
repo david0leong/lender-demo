@@ -9,7 +9,9 @@
       </b-nav-item>
     </b-nav>
 
-    <router-view></router-view>
+    <div class="py-4">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
