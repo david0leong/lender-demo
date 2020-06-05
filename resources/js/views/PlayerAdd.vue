@@ -4,12 +4,16 @@
       {{ error }}
     </b-alert>
 
-    <player-form @submit="onSubmit" @cancel="onCancel"></player-form>
+    <player-form
+      :teamOptions="teamOptions"
+      @submit="onSubmit"
+      @cancel="onCancel"
+    ></player-form>
   </b-card>
 </template>
 
 <script>
-import { createPlayer } from '../utils/api'
+import { fetchTeams, createPlayer } from '../utils/api'
 import PlayerForm from '../components/PlayerForm'
 
 export default {
@@ -21,11 +25,31 @@ export default {
 
   data() {
     return {
+      teamOptions: [],
       error: '',
     }
   },
 
+  created() {
+    this.loadData()
+  },
+
   methods: {
+    async loadData() {
+      const { data } = await fetchTeams()
+
+      this.teamOptions = [
+        {
+          value: null,
+          text: 'Please select a team',
+        },
+        ...data.data.map(team => ({
+          value: team.id,
+          text: team.name,
+        })),
+      ]
+    },
+
     async onSubmit(newPlayer) {
       try {
         const { data } = await createPlayer(newPlayer)

@@ -8,8 +8,9 @@
     <b-form-group v-bind="$attrs">
       <b-form-select
         v-bind="$attrs"
+        :value="value"
         :state="errors[0] ? false : valid ? true : null"
-        v-model="innerValue"
+        @input="$emit('input', $event)"
       >
         <slot />
       </b-form-select>
@@ -43,28 +44,6 @@ export default {
     value: {
       type: null,
     },
-  },
-
-  data: () => ({
-    innerValue: '',
-  }),
-
-  watch: {
-    // Handles internal model changes.
-    innerValue(newVal) {
-      this.$emit('input', newVal)
-    },
-
-    // Handles external model changes.
-    value(newVal) {
-      this.innerValue = newVal
-    },
-  },
-
-  created() {
-    if (this.value) {
-      this.innerValue = this.value
-    }
   },
 }
 </script>
