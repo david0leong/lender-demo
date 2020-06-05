@@ -15,6 +15,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    alias: '/home',
     redirect: { name: 'Teams' },
   },
   {

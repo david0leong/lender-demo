@@ -15,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::view('{any?}', 'spa')->where('any', '.*')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::view('{any?}', 'spa')->where('any', '.*');
+});
