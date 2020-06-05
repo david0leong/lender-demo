@@ -1,16 +1,20 @@
 <template>
-    <div>
-        <p>
-            <router-link :to="{ name: 'Teams' }">Teams</router-link> |
-            <router-link :to="{ name: 'Players' }">Players</router-link>
-        </p>
+  <div>
+    <b-nav pills>
+      <b-nav-item :to="{ name: 'Teams' }" active-class="active">
+        Teams
+      </b-nav-item>
+      <b-nav-item :to="{ name: 'Players' }" active-class="active">
+        Players
+      </b-nav-item>
+    </b-nav>
 
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 export default {
-    name: 'App',
+  name: 'App',
 }
 </script>

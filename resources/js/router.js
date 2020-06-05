@@ -7,25 +7,25 @@ import Players from './views/Players'
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        redirect: { name: 'Teams' },
-    },
-    {
-        path: '/teams',
-        name: 'Teams',
-        component: Teams,
-    },
-    {
-        path: '/players',
-        name: 'Players',
-        component: Players,
-    },
+  {
+    path: '/',
+    redirect: { name: 'Teams' },
+  },
+  {
+    path: '/teams',
+    name: 'Teams',
+    component: Teams,
+  },
+  {
+    path: '/players',
+    name: 'Players',
+    component: Players,
+  },
 ]
 
 const router = new VueRouter({
-    mode: 'history',
-    routes,
+  mode: 'history',
+  routes,
 })
 
 export default router

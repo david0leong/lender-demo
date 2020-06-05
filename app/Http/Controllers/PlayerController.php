@@ -15,7 +15,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        return PlayerResource::collection(Player::all());
+        return PlayerResource::collection(Player::with(['team'])->get());
     }
 
     /**
