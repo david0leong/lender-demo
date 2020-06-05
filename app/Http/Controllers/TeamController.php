@@ -26,7 +26,13 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $team = Team::create($data);
+
+        return new TeamResource($team);
     }
 
     /**
@@ -37,7 +43,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return new TeamResource($team);
     }
 
     /**
@@ -49,7 +55,14 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $team->name = $data['name'];
+        $team->update();
+
+        return new TeamResource($team);
     }
 
     /**
