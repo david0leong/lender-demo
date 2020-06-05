@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Player;
+use App\Http\Resources\Player as PlayerResource;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -14,7 +15,7 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        //
+        return PlayerResource::collection(Player::all());
     }
 
     /**
@@ -25,7 +26,11 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate(Player::rules());
+
+        $player = Player::create($data);
+
+        return new PlayerResource($player);
     }
 
     /**
@@ -36,7 +41,7 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        //
+        return new PlayerResource($player);
     }
 
     /**
@@ -48,7 +53,11 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
-        //
+        $data = $request->validate(Player::rules($player->id));
+
+        $player->update($data);
+
+        return new PlayerResource($player);
     }
 
     /**

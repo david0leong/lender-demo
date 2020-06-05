@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('teams', 'TeamController@index');
-Route::post('teams', 'TeamController@store');
-Route::get('teams/{team}', 'TeamController@show');
-Route::put('teams/{team}', 'TeamController@update');
+Route::resources([
+    'teams' => 'TeamController',
+    'players' => 'PlayerController',
+]);

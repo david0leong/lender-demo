@@ -26,9 +26,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required',
-        ]);
+        $data = $request->validate(Team::rules());
 
         $team = Team::create($data);
 
@@ -55,12 +53,9 @@ class TeamController extends Controller
      */
     public function update(Request $request, Team $team)
     {
-        $data = $request->validate([
-            'name' => 'required',
-        ]);
+        $data = $request->validate(Team::rules($team->id));
 
-        $team->name = $data['name'];
-        $team->update();
+        $team->update($data);
 
         return new TeamResource($team);
     }

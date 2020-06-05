@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
 
 class Player extends Model
 {
@@ -12,7 +13,7 @@ class Player extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name'
+        'first_name', 'last_name', 'team_id'
     ];
 
      /**
@@ -21,5 +22,16 @@ class Player extends Model
     public function team()
     {
         return $this->belongsTo('App\Team');
+    }
+
+    public static function rules($id = 0, $merge = []) {
+        return array_merge(
+            [
+                'first_name' => ['required', 'string', 'max:30'],
+                'last_name' => ['required', 'string', 'max:30'],
+                'team_id' => ['exists:App\Team,id']
+            ],
+            $merge
+        );
     }
 }
