@@ -50,9 +50,9 @@ export default {
       ]
     },
 
-    async onSubmit(newPlayer) {
+    async onSubmit(payload) {
       try {
-        const { data } = await createPlayer(newPlayer)
+        const { data } = await createPlayer(payload)
 
         this.$router.push({
           name: 'PlayerDetails',

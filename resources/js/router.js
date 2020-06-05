@@ -8,7 +8,7 @@ import TeamEdit from './views/TeamEdit'
 import Players from './views/Players'
 import PlayerDetails from './views/PlayerDetails'
 import PlayerAdd from './views/PlayerAdd'
-// import PlayerEdit from './views/PlayerEdit'
+import PlayerEdit from './views/PlayerEdit'
 
 Vue.use(VueRouter)
 
@@ -51,6 +51,11 @@ const routes = [
     path: '/players/:id',
     name: 'PlayerDetails',
     component: PlayerDetails,
+  },
+  {
+    path: '/players/:id/edit',
+    name: 'PlayerEdit',
+    component: PlayerEdit,
   },
 ]
 

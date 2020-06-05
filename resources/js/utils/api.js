@@ -15,5 +15,7 @@ export const updateTeam = (id, payload) =>
   axiosInstance.patch(`/teams/${id}`, payload)
 
 export const fetchPlayers = () => axiosInstance.get('/players')
-export const fetchPlayer = id => axiosInstance.get(`/players/${id}`)
 export const createPlayer = payload => axiosInstance.post('/players', payload)
+export const fetchPlayer = id => axiosInstance.get(`/players/${id}`)
+export const updatePlayer = (id, payload) =>
+  axiosInstance.patch(`/players/${id}`, payload)

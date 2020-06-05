@@ -26,9 +26,9 @@ export default {
   },
 
   methods: {
-    async onSubmit(newTeam) {
+    async onSubmit(payload) {
       try {
-        const { data } = await createTeam(newTeam)
+        const { data } = await createTeam(payload)
 
         this.$router.push({ name: 'TeamDetails', params: { id: data.data.id } })
       } catch (error) {

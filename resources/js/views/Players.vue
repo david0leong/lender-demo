@@ -12,7 +12,7 @@
       <template v-slot:cell(team)="{ item: player }">
         <b-link
           v-if="player.team"
-          :to="{ name: 'PlayerDetails', params: { id: player.team.id } }"
+          :to="{ name: 'TeamDetails', params: { id: player.team.id } }"
         >
           {{ player.team.name }}
         </b-link>
