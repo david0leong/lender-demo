@@ -1,29 +1,21 @@
 <template>
-  <b-table :fields="fields" :items="teams" hover>
-    <template v-slot:cell(action)="team">
-      <b-button :to="{ name: 'TeamDetails', params: { id: team.id } }">
-        View
-      </b-button>
-    </template>
-  </b-table>
+  <teams-table :teams="teams"></teams-table>
 </template>
 
 <script>
 import { fetchTeams } from '../utils/api'
-import { formatDate } from '../utils/formatters'
+import TeamsTable from '../components/TeamsTable'
 
 export default {
   name: 'Teams',
 
+  components: {
+    TeamsTable,
+  },
+
   data() {
     return {
       teams: [],
-      fields: [
-        { key: 'id', label: 'ID' },
-        { key: 'name', label: 'Name' },
-        { key: 'created_at', label: 'Created At' },
-        'action',
-      ],
     }
   },
 
@@ -35,10 +27,7 @@ export default {
     async loadData() {
       const { data } = await fetchTeams()
 
-      this.teams = data.data.map(team => ({
-        ...team,
-        created_at: formatDate(team.created_at),
-      }))
+      this.teams = data.data
     },
   },
 }

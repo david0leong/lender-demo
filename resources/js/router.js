@@ -21,17 +21,17 @@ const routes = [
   },
   {
     path: '/teams/new',
-    name: 'Teams',
+    name: 'TeamAdd',
     component: TeamAdd,
   },
   {
     path: '/teams/:id',
-    name: 'Teams',
+    name: 'TeamDetails',
     component: TeamDetails,
   },
   {
     path: '/teams/:id/edit',
-    name: 'Teams',
+    name: 'TeamEdit',
     component: TeamEdit,
   },
   {

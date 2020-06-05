@@ -41,6 +41,8 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
+        $player->load('team');
+
         return new PlayerResource($player);
     }
 

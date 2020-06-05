@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::view('/{path?}', 'spa')->middleware('auth');
+Route::view('{any?}', 'spa')->where('any', '.*')->middleware('auth');

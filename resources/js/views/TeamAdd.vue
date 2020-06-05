@@ -6,7 +6,6 @@
 
 <script>
 import { fetchTeam } from '../utils/api'
-import { formatDate } from '../utils/formatters'
 
 export default {
   name: 'TeamAdd',
@@ -18,7 +17,7 @@ export default {
   },
 
   created() {
-    this.loadData()
+    // this.loadData()
   },
 
   methods: {},
