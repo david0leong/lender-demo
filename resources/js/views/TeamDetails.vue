@@ -23,26 +23,32 @@
       </div>
 
       <h3>Players</h3>
-      <players-table :players="team.players"></players-table>
+      <b-table :fields="playerFields" :items="team.players" hover>
+        <template v-slot:cell(created_at)="{ item }">
+          {{ formatDate(item.created_at) }}
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
 
 <script>
 import { fetchTeam } from '../utils/api'
-import PlayersTable from '../components/PlayersTable'
+import { formatDate } from '../utils/formatters'
 
 export default {
   name: 'TeamDetails',
-
-  components: {
-    PlayersTable,
-  },
 
   data() {
     return {
       team: null,
       error: null,
+      playerFields: [
+        { key: 'id', label: 'ID' },
+        { key: 'first_name', label: 'First Name' },
+        { key: 'last_name', label: 'Last Name' },
+        { key: 'created_at', label: 'Created At' },
+      ],
     }
   },
 
@@ -51,6 +57,8 @@ export default {
   },
 
   methods: {
+    formatDate,
+
     async loadData() {
       try {
         const { data } = await fetchTeam(this.$route.params.id)

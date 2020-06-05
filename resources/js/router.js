@@ -2,10 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Teams from './views/Teams'
+import TeamDetails from './views/TeamDetails'
 import TeamAdd from './views/TeamAdd'
 import TeamEdit from './views/TeamEdit'
-import TeamDetails from './views/TeamDetails'
 import Players from './views/Players'
+import PlayerDetails from './views/PlayerDetails'
+import PlayerAdd from './views/PlayerAdd'
+// import PlayerEdit from './views/PlayerEdit'
 
 Vue.use(VueRouter)
 
@@ -38,6 +41,16 @@ const routes = [
     path: '/players',
     name: 'Players',
     component: Players,
+  },
+  {
+    path: '/players/:id',
+    name: 'PlayerDetails',
+    component: PlayerDetails,
+  },
+  {
+    path: '/players/new',
+    name: 'PlayerAdd',
+    component: PlayerAdd,
   },
 ]
 

@@ -7,24 +7,47 @@
         Add a team
       </b-button>
     </div>
-    <teams-table :teams="teams"></teams-table>
+
+    <b-table :fields="fields" :items="teams" hover>
+      <template v-slot:cell(created_at)="{ item: team }">
+        {{ formatDate(team.created_at) }}
+      </template>
+
+      <template v-slot:cell(action)="{ item: team }">
+        <b-button
+          variant="info"
+          :to="{ name: 'TeamDetails', params: { id: team.id } }"
+        >
+          View
+        </b-button>
+
+        <b-button
+          variant="primary"
+          :to="{ name: 'TeamEdit', params: { id: team.id } }"
+        >
+          Edit
+        </b-button>
+      </template>
+    </b-table>
   </div>
 </template>
 
 <script>
 import { fetchTeams } from '../utils/api'
-import TeamsTable from '../components/TeamsTable'
+import { formatDate } from '../utils/formatters'
 
 export default {
   name: 'Teams',
 
-  components: {
-    TeamsTable,
-  },
-
   data() {
     return {
       teams: [],
+      fields: [
+        { key: 'id', label: 'ID' },
+        { key: 'name', label: 'Name' },
+        { key: 'created_at', label: 'Created At' },
+        'action',
+      ],
     }
   },
 
@@ -33,6 +56,8 @@ export default {
   },
 
   methods: {
+    formatDate,
+
     async loadData() {
       const { data } = await fetchTeams()
 
