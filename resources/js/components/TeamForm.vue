@@ -43,13 +43,21 @@ export default {
     value: {},
   }),
 
+  created() {
+    this.updateValue()
+  },
+
   watch: {
-    defaultValue(newDefaultValue) {
-      this.value = newDefaultValue
+    defaultValue() {
+      this.updateValue()
     },
   },
 
   methods: {
+    updateValue() {
+      this.value = _.pick(this.defaultValue, ['name'])
+    },
+
     onSubmit() {
       this.$emit('submit', Object.assign({}, this.value))
     },

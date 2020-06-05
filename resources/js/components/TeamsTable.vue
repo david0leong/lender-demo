@@ -6,14 +6,14 @@
 
     <template v-slot:cell(action)="{ item }">
       <b-button
-        variant="primary"
+        variant="info"
         :to="{ name: 'TeamDetails', params: { id: item.id } }"
       >
         View
       </b-button>
 
       <b-button
-        variant="info"
+        variant="primary"
         :to="{ name: 'TeamEdit', params: { id: item.id } }"
       >
         Edit

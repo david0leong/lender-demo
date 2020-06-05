@@ -8,9 +8,18 @@
       <div class="d-flex justify-content-between align-items-center">
         <h2>Team: {{ team.name }}</h2>
 
-        <b-button variant="light" :to="{ name: 'Teams' }">
-          Back
-        </b-button>
+        <div>
+          <b-button
+            variant="success"
+            :to="{ name: 'TeamEdit', params: { id: team.id } }"
+          >
+            Edit
+          </b-button>
+
+          <b-button variant="light" :to="{ name: 'Teams' }">
+            Back
+          </b-button>
+        </div>
       </div>
 
       <h3>Players</h3>
