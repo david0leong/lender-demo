@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class Player extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,14 +12,14 @@ class Team extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'first_name', 'last_name'
     ];
 
-    /**
-     * Get the players for the team.
+     /**
+     * Get the team that owns the player.
      */
-    public function players()
+    public function team()
     {
-        return $this->hasMany('App\Player');
+        return $this->belongsTo('App\Team');
     }
 }
